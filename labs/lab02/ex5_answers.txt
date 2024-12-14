@@ -1,2 +1,2 @@
-1. 
-2. 
+1. void ben(int *arr, int size)
+2. line 15, address 0x00000000 forbidden accesse
