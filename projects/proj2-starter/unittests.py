@@ -133,6 +133,24 @@ class TestArgmax(unittest.TestCase):
 
 
 class TestDot(unittest.TestCase):
+    def test_dot_standard_1(self):
+        t = AssemblyTest(self, "dot.s")
+        # create arrays in the data section
+        arr0 = t.array([1]) 
+        arr1 = t.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+        # load array addresses into argument registers
+        t.input_array("a0", arr0)
+        t.input_array("a1", arr1)
+        # load array attributes into argument registers
+        t.input_scalar("a2", len(arr0))
+        t.input_scalar("a3", 1)
+        t.input_scalar("a4", 1)
+        # call the `dot` function
+        t.call("dot")
+        # check the return value
+        t.check_scalar("a0", 1)
+        t.execute()
+
     def test_dot_standard(self):
         t = AssemblyTest(self, "dot.s")
         # create arrays in the data section
